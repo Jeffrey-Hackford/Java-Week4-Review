@@ -25,7 +25,7 @@ public class Band {
    }
  }
 
- @Override
+  @Override
   public boolean equals(Object band) {
     if (!(band instanceof Band)) {
       return false;
@@ -33,6 +33,16 @@ public class Band {
       Band newBand = (Band) band;
       return this.getBandName().equals(newBand.getBandName()) &&
              this.getId() == newBand.getId();
+    }
+  }
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO bands(bandName) VALUES (:bandName)";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("bandName", this.bandName)
+        .executeUpdate()
+        .getKey();
     }
   }
 

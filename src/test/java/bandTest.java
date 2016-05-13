@@ -27,8 +27,15 @@ public class BandTest {
   public void equals_returnsTrueIfBothNamesAreTheSame_True() {
     Band firstBand = new Band("REO");
     Band secondBand = new Band("REO");
-
     assertTrue(firstBand.equals(secondBand));
+  }
+
+  @Test
+  public void save_savesInstanceToDBWithId_True() {
+    Band newBand = new Band("American");
+    newBand.save();
+    Band savedBand = Band.all().get(0);
+    assertEquals(newBand.getId(), savedBand.getId());
   }
 
 
