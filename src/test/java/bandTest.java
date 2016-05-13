@@ -23,5 +23,14 @@ public class BandTest {
     assertEquals(Band.all().size(), 0);
   }
 
+  @Test
+  public void equals_returnsTrueIfBothNamesAreTheSame_True() {
+    Band firstBand = new Band("REO");
+    Band secondBand = new Band("REO");
+
+    assertTrue(firstBand.equals(secondBand));
+  }
+
+
 
 }
