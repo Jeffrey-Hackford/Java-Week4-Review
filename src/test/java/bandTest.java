@@ -32,12 +32,17 @@ public class BandTest {
 
   @Test
   public void save_savesInstanceToDBWithId_True() {
-    Band newBand = new Band("American");
+    Band newBand = new Band("Kansas");
     newBand.save();
     Band savedBand = Band.all().get(0);
     assertEquals(newBand.getId(), savedBand.getId());
   }
 
-
-
+  @Test
+  public void find_returnsCorrectInstanceOfBand_True() {
+    Band newBand = new Band("Rock");
+    newBand.save();
+    Band foundBand = Band.find(newBand.getId());
+    assertTrue(newBand.equals(foundBand));
+  }
 }
