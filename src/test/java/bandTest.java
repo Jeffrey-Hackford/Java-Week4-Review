@@ -45,4 +45,12 @@ public class BandTest {
     Band foundBand = Band.find(newBand.getId());
     assertTrue(newBand.equals(foundBand));
   }
+
+  @Test
+  public void remove_removesInstanceOfBand_True() {
+    Band newBand = new Band("Band 1");
+    newBand.save();
+    newBand.removeBand();
+    assertEquals(Band.all().size(), 0);
+  }
 }
