@@ -12,4 +12,16 @@ public class BandTest {
     assertEquals(true, newBand instanceof Band);
   }
 
+  @Test
+  public void Band_returnsNameOfBand_String() {
+    Band newBand = new Band("Journey");
+    assertEquals("Journey", newBand.getBandName());
+  }
+
+  @Test
+  public void all_emptyAtFirst() {
+    assertEquals(Band.all().size(), 0);
+  }
+
+
 }
