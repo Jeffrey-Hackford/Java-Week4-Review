@@ -30,10 +30,10 @@ public class VenueTest {
     assertTrue(firstVenue.equals(secondVenue));
   }
 
-  // @Test
-  // public void save_retrievesSavedInstanceFromDB_true() {
-  //   Venue newVenue = new Venue("Venue 3");
-  //   newVenue.save();
-  //   assertEquals()
-  // }
+  @Test
+  public void save_savesInstanceToDB_true() {
+    Venue newVenue = new Venue("Venue 3");
+    newVenue.save();
+    assertEquals(Venue.all().size(), 1);
+  }
 }
