@@ -11,4 +11,10 @@ public class VenueTest {
     Venue newVenue = new Venue("Venue 1");
     assertEquals(true, newVenue instanceof Venue);
   }
+
+  @Test
+  public void venue_returnsNameOfInstance() {
+    Venue newVenue = new Venue("Venue 2");
+    assertEquals("Venue 2", newVenue.getVenueName());
+  }
 }
