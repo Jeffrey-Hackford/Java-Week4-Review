@@ -53,4 +53,12 @@ public class BandTest {
     newBand.removeBand();
     assertEquals(Band.all().size(), 0);
   }
+
+  @Test
+  public void update_updatesBandName() {
+    Band newBand = new Band("Band 2");
+    newBand.save();
+    newBand.update("Band 3");
+    assertEquals("Band 3", Band.find(newBand.getId()).getBandName());
+  }
 }
