@@ -36,4 +36,21 @@ public class VenueTest {
     newVenue.save();
     assertEquals(Venue.all().size(), 1);
   }
+
+  @Test
+  public void save_savesInstanceToDBWithId_True() {
+    Venue newVenue = new Venue("Venue 4");
+    newVenue.save();
+    Venue savedVenue = Venue.all().get(0);
+    assertEquals(newVenue.getId(), savedVenue.getId());
+  }
+
+  @Test
+  public void find_returnsCorrectInstanceOfVenue_True() {
+    Venue newVenue = new Venue("Venue 1");
+    newVenue.save();
+    Venue foundVenue = Venue.find(newVenue.getId());
+    assertTrue(newVenue.equals(foundVenue));
+  }
+
 }
