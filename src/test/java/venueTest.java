@@ -22,4 +22,18 @@ public class VenueTest {
   public void all_emptyAtFirst() {
     assertEquals(Venue.all().size(), 0);
   }
+
+  @Test
+  public void equals_returnsTrueIfBothNamesAreTheSame_True() {
+    Venue firstVenue = new Venue("Venue 1");
+    Venue secondVenue = new Venue("Venue 1");
+    assertTrue(firstVenue.equals(secondVenue));
+  }
+
+  // @Test
+  // public void save_retrievesSavedInstanceFromDB_true() {
+  //   Venue newVenue = new Venue("Venue 3");
+  //   newVenue.save();
+  //   assertEquals()
+  // }
 }
