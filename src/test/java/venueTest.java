@@ -47,10 +47,18 @@ public class VenueTest {
 
   @Test
   public void find_returnsCorrectInstanceOfVenue_True() {
-    Venue newVenue = new Venue("Venue 1");
+    Venue newVenue = new Venue("Venue 5");
     newVenue.save();
     Venue foundVenue = Venue.find(newVenue.getId());
     assertTrue(newVenue.equals(foundVenue));
+  }
+
+  @Test
+  public void remove_deletesInstanceFromDB() {
+    Venue newVenue = new Venue("Venue 6");
+    newVenue.save();
+    newVenue.removeVenue();
+    assertEquals(Venue.all().size(), 0);
   }
 
 }

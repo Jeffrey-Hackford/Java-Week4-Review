@@ -55,4 +55,13 @@ public class Venue {
     }
   }
 
+  public void removeVenue() {
+    String sql2 = "DELETE FROM venues WHERE id = :id";
+    try (Connection con = DB.sql2o.open()) {
+      con.createQuery(sql2)
+      .addParameter("id", this.id)
+      .executeUpdate();
+    }
+  }
+
 }
