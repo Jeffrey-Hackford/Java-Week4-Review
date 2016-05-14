@@ -17,4 +17,9 @@ public class VenueTest {
     Venue newVenue = new Venue("Venue 2");
     assertEquals("Venue 2", newVenue.getVenueName());
   }
+
+  @Test
+  public void all_emptyAtFirst() {
+    assertEquals(Venue.all().size(), 0);
+  }
 }
