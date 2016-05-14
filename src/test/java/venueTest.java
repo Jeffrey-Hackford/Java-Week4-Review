@@ -61,4 +61,11 @@ public class VenueTest {
     assertEquals(Venue.all().size(), 0);
   }
 
+  @Test
+  public void update_updatesVenueName() {
+    Venue newVenue = new Venue("Venue 7");
+    newVenue.save();
+    newVenue.update("Venue 8");
+    assertEquals("Venue 8", Venue.find(newVenue.getId()).getVenueName());
+  }
 }

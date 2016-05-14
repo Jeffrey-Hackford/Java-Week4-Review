@@ -64,4 +64,13 @@ public class Venue {
     }
   }
 
+  public void update(String newVenueName) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE venues SET venueName = :venueName WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("venueName", newVenueName)
+        .addParameter("id", this.id)
+        .executeUpdate();
+    }
+  }
 }
