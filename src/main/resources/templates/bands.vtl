@@ -1,0 +1,9 @@
+<h1 class="jumbotron">Here is a list of all Bands:</h1>
+
+<div class="container">
+  <ul>
+    #foreach ($band in $bands)
+      <li><a class="btn" href="band/$band.getId()">$band.getBandName()</a></li>
+    #end
+  </ul>
+</div>

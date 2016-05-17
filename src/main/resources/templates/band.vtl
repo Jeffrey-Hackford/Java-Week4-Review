@@ -1,0 +1,16 @@
+<h1>$band.getBandName() will be attending these venues:</h1>
+
+<div>
+  <ol>
+    #foreach($venue in $venues)
+      <li>$venue.getVenueName()</li>
+    #end
+  </ol>
+</div>
+
+<div class="container">
+  <form action="/band" method="post">
+    <input type="text" name="inputtedVenue" id="inputtedVenue" placeholder="Input a Venue">
+    <button type="submit" class="btn">+</button>
+  </form>
+</div>
