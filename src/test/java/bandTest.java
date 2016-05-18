@@ -1,6 +1,8 @@
 import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.util.List;
+
 
 public class BandTest {
   @Rule
@@ -47,14 +49,6 @@ public class BandTest {
   }
 
   @Test
-  public void remove_removesInstanceOfBand_True() {
-    Band newBand = new Band("Band 1");
-    newBand.save();
-    newBand.removeBand();
-    assertEquals(Band.all().size(), 0);
-  }
-
-  @Test
   public void addVenue_addsVenueToBand_true() {
     Band newBand = new Band("Kansas");
     newBand.save();
@@ -63,6 +57,25 @@ public class BandTest {
     newBand.addVenue(newVenue);
     Venue savedVenue = newBand.getVenues().get(0);
     assertTrue(newVenue.equals(savedVenue));
+  }
+
+  @Test
+  public void getVenue_returnsAllVenue_List() {
+    Venue myVenue = new Venue("Noisy Place");
+    myVenue.save();
+    Band myBand = new Band("Noisy People");
+    myBand.save();
+    myBand.addVenue(myVenue);
+    List savedVenue = myBand.getVenues();
+    assertEquals(1, savedVenue.size());
+  }
+
+  @Test
+  public void remove_removesInstanceOfBand_True() {
+    Band newBand = new Band("Band 1");
+    newBand.save();
+    newBand.removeBand();
+    assertEquals(Band.all().size(), 0);
   }
 
   @Test

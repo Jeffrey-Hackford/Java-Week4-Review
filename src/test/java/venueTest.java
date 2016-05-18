@@ -1,6 +1,8 @@
 import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.util.List;
+
 
 public class VenueTest {
   @Rule
@@ -54,16 +56,8 @@ public class VenueTest {
   }
 
   @Test
-  public void remove_deletesInstanceFromDB() {
-    Venue newVenue = new Venue("Venue 6");
-    newVenue.save();
-    newVenue.removeVenue();
-    assertEquals(Venue.all().size(), 0);
-  }
-
-  @Test
   public void addBand_addsBandToVenue_true() {
-    Venue myVenue = new Venue("Venue 1");
+    Venue myVenue = new Venue("Venue 6");
     myVenue.save();
     Band myBand = new Band("MaS");
     myBand.save();
@@ -73,10 +67,29 @@ public class VenueTest {
   }
 
   @Test
-  public void update_updatesVenueName() {
-    Venue newVenue = new Venue("Venue 7");
+  public void getBands_returnsAllBands_List() {
+    Band myBand = new Band("Noise People");
+    myBand.save();
+    Venue myVenue = new Venue("Venue 7");
+    myVenue.save();
+    myVenue.addBand(myBand);
+    List savedBands = myVenue.getBands();
+    assertEquals(1, savedBands.size());
+  }
+
+  @Test
+  public void remove_deletesInstanceFromDB() {
+    Venue newVenue = new Venue("Venue 8");
     newVenue.save();
-    newVenue.update("Venue 8");
-    assertEquals("Venue 8", Venue.find(newVenue.getId()).getVenueName());
+    newVenue.removeVenue();
+    assertEquals(Venue.all().size(), 0);
+  }
+
+  @Test
+  public void update_updatesVenueName() {
+    Venue newVenue = new Venue("Venue 9");
+    newVenue.save();
+    newVenue.update("Venue 9");
+    assertEquals("Venue 9", Venue.find(newVenue.getId()).getVenueName());
   }
 }
