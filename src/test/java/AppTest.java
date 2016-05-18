@@ -34,4 +34,13 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Add A New Band");
   }
 
+  @Test
+  public void bandIsAddedSuccessfully() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Add A New Band"));
+    fill("#inputtedBand").with("Kansas");
+    submit(".btn", withText("Add"));
+    assertThat(pageSource()).contains("Kansas");
+  }
+
 }
