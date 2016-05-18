@@ -41,9 +41,10 @@ public class App{
     }, new VelocityTemplateEngine());
 
     post("/bands/:id", (request, response) -> {
-      String inputtedBandName = request.queryParams("inputtedBandName");
-      Band newBand = new Band(inputtedBandName);
+      String inputtedBand = request.queryParams("inputtedBand");
+      Band newBand = new Band(inputtedBand);
       newBand.save();
+System.out.println(newBand);
       response.redirect("/bands/" + newBand.getId());
       return null;
     });
@@ -51,7 +52,7 @@ public class App{
     post("/bands/:id/update", (request, response) -> {
       int bandId = Integer.parseInt(request.params("id"));
       Band band = Band.find(bandId);
-String newName = request.queryParams("update");
+      String newName = request.queryParams("updateBand");
       band.updateBand(newName);
       response.redirect("/bands/" + band.getId());
       return null;
@@ -71,9 +72,9 @@ String newName = request.queryParams("update");
       List<Venue> allVenues = Venue.all();
       Venue newVenue = new Venue(venueName);
       boolean repeatVenue = false;
-      for(Venue listedVenue : allVenues) {
-        if (newVenue.getVenueName().equals(listedVenue.getVenueName())) {
-          band.addVenue(listedVenue);
+      for(Venue venue : allVenues) {
+        if (newVenue.getVenueName().equals(venue.getVenueName())) {
+          band.addVenue(venue);
           repeatVenue = true;
           break;
         }

@@ -2,13 +2,13 @@
 
   <form action="/bands/$band.getId()/update" method="post">
     <input id="updateBand" name="updateBand" type="text">
-    <button type="submit" class="btn btn-primary" id="update-submit">Update Band Name</button>
+    <button type="submit" class="btn btn-primary" id="updateBandButton">Update Band Name</button>
   </form>
 
 
   <form action="/bands/$band.getId()/venue/new" method="post">
     <input id="inputtedVenue" name="inputtedVenue" type="text">
-    <button type="submit" class="btn btn-primary" id="add-venue">Add Venue</button>
+    <button type="submit" class="btn btn-primary" id="addVenueButton">Add Venue</button>
   </form>
 
 
@@ -19,7 +19,7 @@
       #if ($band.getVenues().size() !=0)
           <h2>$band.getBandName() is playing at these venues:</h2>
         #foreach ($venue in $venues)
-          <a href="/venues/$venue.getId()">$venue.getBandName()</a><br>
+          <a href="/venues/$venue.getId()">$venue.getVenueName()</a><br>
         #end
 
         #else

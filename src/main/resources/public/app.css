@@ -5,3 +5,16 @@
 .centered {
   text-align: center;
 }
+
+body {
+  background-image: url("http://www.elevatedaudio.com/wp-content/uploads/2014/02/td-30kv_stage_1_gal.jpg");
+  background-size: 100%;
+}
+
+label {
+  color: #eaeaea;
+}
+
+h1, h2, h3, h4 {
+  color: #eaeaea;
+}

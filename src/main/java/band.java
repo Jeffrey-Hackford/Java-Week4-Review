@@ -92,6 +92,12 @@ public class Band {
       .addParameter("id", this.id)
       .executeUpdate();
     }
+    String sql2 = "DELETE FROM bands_venues WHERE band_id = :id";
+    try (Connection con = DB.sql2o.open()) {
+      con.createQuery(sql2)
+      .addParameter("id", this.id)
+      .executeUpdate();
+    }
   }
 
   public void updateBand(String newBandName) {
@@ -102,5 +108,12 @@ public class Band {
         .addParameter("id", this.id)
         .executeUpdate();
     }
+    // try(Connection con = DB.sql2o.open()) {
+    //   String sql = "UPDATE bands_venues SET bandName = :bandName WHERE band_id = :id";
+    //   con.createQuery(sql)
+    //     .addParameter("bandName", newBandName)
+    //     .addParameter("id", this.id)
+    //     .executeUpdate();
+    // }
   }
 }
