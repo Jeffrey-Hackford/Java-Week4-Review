@@ -62,6 +62,17 @@ public class VenueTest {
   }
 
   @Test
+  public void addBand_addsBandToVenue_true() {
+    Venue myVenue = new Venue("Venue 1");
+    myVenue.save();
+    Band myBand = new Band("MaS");
+    myBand.save();
+    myVenue.addBand(myBand);
+    Band savedBand = myVenue.getBands().get(0);
+    assertTrue(myBand.equals(savedBand));
+  }
+
+  @Test
   public void update_updatesVenueName() {
     Venue newVenue = new Venue("Venue 7");
     newVenue.save();

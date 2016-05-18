@@ -40,7 +40,7 @@ public class BandTest {
 
   @Test
   public void find_returnsCorrectInstanceOfBand_True() {
-    Band newBand = new Band("Rock");
+    Band newBand = new Band("MaS");
     newBand.save();
     Band foundBand = Band.find(newBand.getId());
     assertTrue(newBand.equals(foundBand));
@@ -52,6 +52,17 @@ public class BandTest {
     newBand.save();
     newBand.removeBand();
     assertEquals(Band.all().size(), 0);
+  }
+
+  @Test
+  public void addVenue_addsVenueToBand_true() {
+    Band newBand = new Band("Kansas");
+    newBand.save();
+    Venue newVenue = new Venue("Place 1");
+    newVenue.save();
+    newBand.addVenue(newVenue);
+    Venue savedVenue = newBand.getVenues().get(0);
+    assertTrue(newVenue.equals(savedVenue));
   }
 
   @Test

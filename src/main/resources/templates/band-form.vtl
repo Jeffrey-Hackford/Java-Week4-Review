@@ -1,15 +1,10 @@
-<h1 class="jumbotron">Add a Band</h1>
-<div class="container">
-  <form class="form-group" action="/bands" method="post">
-    <label for="bandInput">Band</label>
-    <input type="text" name="bandInput" id="bandInput" placeholder="Enter a Band:">
-    <button type="submit" class="btn btn-info">Add</button>
-  </form>
-</div>
+<h1 class="jumbotron">Add A New Band</h1>
 
-<div class="row">
-  <div class="col-xs-12">
-    <a class="btn btn-success" href="/bands">View List of Bands</a>
-    <a class="btn btn-success" href="/venues">View Venues</a>
-  </div>
-</div>
+
+<form class="centered" action="/bands/$band.getId()" method="post">
+  <label for="name">Band Name:</label>
+  <input id="inputtedBand" name="inputtedBand" type="text">
+  <button type="submit" class="btn btn-success">Add Band</button>
+</form>
+
+<a href="/" class="btn btn-success centered"> Go Home</a>

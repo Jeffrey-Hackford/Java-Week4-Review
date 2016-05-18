@@ -1,0 +1,14 @@
+<h1 class="jumbotron">$venue.getVenueName()</h1>
+
+#if ($venue.getBands().size() != 0)
+    <h2>Bands that are playing at $venue.getVenueName():</h2>
+  #foreach ($band in $bands)
+    <ul>
+      <a href="/bands/$band.getId()">$band.getBandName()</a>
+    </ul>
+  #end
+
+  #else
+    <h2>No bands are playing at $venue.getVenueName() yet. Check back soon to see who will be playing here.</h2>
+#end
+<br><a href="/" class="btn btn-primary">Go Home</a>

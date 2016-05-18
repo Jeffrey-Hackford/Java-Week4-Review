@@ -1,16 +1,29 @@
-<h1>$band.getBandName() will be attending these venues:</h1>
+<h1 class="jumbotron">$band.getBandName()<h1>
 
-<div>
-  <ol>
-    #foreach($venue in $venues)
-      <li>$venue.getVenueName()</li>
-    #end
-  </ol>
-</div>
-
-<div class="container">
-  <form action="/band" method="post">
-    <input type="text" name="inputtedVenue" id="inputtedVenue" placeholder="Input a Venue">
-    <button type="submit" class="btn">+</button>
+  <form action="/bands/$band.getId()/update" method="post">
+    <input id="updateBand" name="updateBand" type="text">
+    <button type="submit" class="btn btn-primary" id="update-submit">Update Band Name</button>
   </form>
-</div>
+
+
+  <form action="/bands/$band.getId()/venue/new" method="post">
+    <input id="inputtedVenue" name="inputtedVenue" type="text">
+    <button type="submit" class="btn btn-primary" id="add-venue">Add Venue</button>
+  </form>
+
+
+  <form action="/bands/$band.getId()/delete" method='post'>
+    <button type="submit" class="btn btn-warning" id="delete-band">Delete This Band</button>
+  </form>
+
+      #if ($band.getVenues().size() !=0)
+          <h2>$band.getBandName() is playing at these venues:</h2>
+        #foreach ($venue in $venues)
+          <a href="/venues/$venue.getId()">$venue.getBandName()</a><br>
+        #end
+
+        #else
+          <h2>No Venues Added Yet</h2>
+      #end
+
+<a href="/" class="btn btn-primary">Go Home</a>

@@ -3,7 +3,10 @@
 <div class="container">
   <ul>
     #foreach ($band in $bands)
-      <li><a class="btn" href="band/$band.getId()">$band.getBandName()</a></li>
+      <li><a class="btn" href="bands/$band.getId()">$band.getBandName()</a></li>
     #end
   </ul>
 </div>
+
+<a href="/" class="btn btn-primary centered">Go Home</a>
+<a href="/band-form" class="btn btn-primary centered">Add A New Band</a>
