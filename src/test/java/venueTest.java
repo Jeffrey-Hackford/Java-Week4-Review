@@ -62,7 +62,10 @@ public class VenueTest {
     Band myBand = new Band("MaS");
     myBand.save();
     myVenue.addBand(myBand);
+// System.out.println(myBand);
+// System.out.println(myVenue);
     Band savedBand = myVenue.getBands().get(0);
+// System.out.println(savedBand);
     assertTrue(myBand.equals(savedBand));
   }
 

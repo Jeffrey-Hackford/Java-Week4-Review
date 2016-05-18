@@ -60,7 +60,7 @@ public class BandTest {
   }
 
   @Test
-  public void getVenue_returnsAllVenue_List() {
+  public void getVenues_returnsAllVenue_List() {
     Venue myVenue = new Venue("Noisy Place");
     myVenue.save();
     Band myBand = new Band("Noisy People");
