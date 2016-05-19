@@ -39,7 +39,6 @@ public class App{
     get("/bands/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Band band = Band.find(Integer.parseInt(request.params(":id")));
-      String venue = request.queryParams("inputtedVenue");
       model.put("band", band);
       model.put("venues", band.getVenues());
       model.put("template", "templates/band.vtl");
@@ -49,7 +48,6 @@ public class App{
     get("/venues/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Venue venue = Venue.find(Integer.parseInt(request.params(":id")));
-      String band = request.queryParams("inputtedBand");
       model.put("venue", venue);
       model.put("bands", venue.getBands());
       model.put("template", "templates/venue.vtl");
