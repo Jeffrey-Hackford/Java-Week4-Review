@@ -110,4 +110,15 @@ public class AppTest extends FluentTest {
     submit(".btn", withText("Add Band"));
     assertEquals(Band.all().size(), 1);
   }
+
+  @Test
+  public void bandNameUpdatedSuccessfully() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Add A New Band"));
+    fill("#inputtedBand").with("Band 1");
+    submit(".btn", withText("Add Band"));
+    fill("#updateBand").with("Band 2");
+    submit(".btn", withText("Update Band Name"));
+    assertThat(pageSource()).contains("Band 2");
+  }
 }
