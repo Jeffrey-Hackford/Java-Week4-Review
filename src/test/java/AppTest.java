@@ -54,6 +54,15 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Venue 1");
   }
 
-  
+  @Test
+  public void venueIsAddedSuccessfully() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Add A New Venue"));
+    fill("#inputtedVenue").with("Venue 1");
+    submit(".btn", withText("Add Venue"));
+    assertThat(pageSource()).contains("Venue 1");
+  }
+
+
 
 }

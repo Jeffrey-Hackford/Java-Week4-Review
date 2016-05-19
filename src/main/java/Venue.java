@@ -103,4 +103,10 @@ public class Venue {
         .executeUpdate();
     }
   }
+  //
+  // public void allreadyExists(Venue venue) {
+  //   try(Connection con = DB.sql2o.open()) {
+  //     String sql =
+  //   }
+  // }
 }
