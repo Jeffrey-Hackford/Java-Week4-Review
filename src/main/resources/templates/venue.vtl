@@ -9,6 +9,10 @@
   #end
 
   #else
-    <h2>No bands are playing at $venue.getVenueName() yet. Check back soon to see who will be playing here.</h2>
+<h1>No bands are playing at $venue.getVenueName()</h1>
 #end
+<form action="/venues/$venue.getId()/band/new" method="post">
+  <input id="inputtedBand" name="inputtedBand" type="text">
+  <button type="submit" class="btn btn-primary" id="addBandButton">Add Band</button>
+</form>
 <br><a href="/" class="btn btn-primary">Go Home</a>

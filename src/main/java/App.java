@@ -17,6 +17,12 @@ public class App{
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/venues/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/venue-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     get("/bands/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/band-form.vtl");
@@ -40,12 +46,30 @@ public class App{
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/venues/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Venue venue = Venue.find(Integer.parseInt(request.params(":id")));
+      String band = request.queryParams("inputtedBand");
+      model.put("venue", venue);
+      model.put("bands", venue.getBands());
+      model.put("template", "templates/venue.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     post("/bands/:id", (request, response) -> {
       String inputtedBand = request.queryParams("inputtedBand");
       Band newBand = new Band(inputtedBand);
       newBand.save();
 System.out.println(newBand);
       response.redirect("/bands/" + newBand.getId());
+      return null;
+    });
+
+    post("/venues/:id", (request, response) -> {
+      String inputtedVenue = request.queryParams("inputtedVenue");
+      Venue newVenue = new Venue(inputtedVenue);
+      newVenue.save();
+      response.redirect("/venues/" + newVenue.getId());
       return null;
     });
 
@@ -66,23 +90,28 @@ System.out.println(newBand);
       return null;
     });
 
+    post("/venues/:id/band/new", (request, response) -> {
+      Venue venue = Venue.find(Integer.parseInt(request.params(":id")));
+      String inputtedBand = request.queryParams("inputtedBand");
+      List<Band> allBands = Band.all();
+      Band newBand = new Band(inputtedBand);
+      newBand.save();
+      venue.addBand(newBand);
+//       if (!(allBands.contains(newBand.getId()))) {
+//         newBand.save();
+// System.out.println(newBand);
+//       }
+      response.redirect("/venues/" + venue.getId());
+      return null;
+    });
+
     post("/bands/:id/venue/new", (request, response) -> {
       Band band = Band.find(Integer.parseInt(request.params(":id")));
       String venueName = request.queryParams("inputtedVenue");
       List<Venue> allVenues = Venue.all();
       Venue newVenue = new Venue(venueName);
-      boolean repeatVenue = false;
-      for(Venue venue : allVenues) {
-        if (newVenue.getVenueName().equals(venue.getVenueName())) {
-          band.addVenue(venue);
-          repeatVenue = true;
-          break;
-        }
-      }
-      if (repeatVenue == false) {
-        newVenue.save();
-        band.addVenue(newVenue);
-      }
+      newVenue.save();
+      band.addVenue(newVenue);
       response.redirect("/bands/" + band.getId());
       return null;
     });
