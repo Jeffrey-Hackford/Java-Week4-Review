@@ -90,8 +90,15 @@ public class App{
     post("/venues/:id/band/new", (request, response) -> {
       Venue venue = Venue.find(Integer.parseInt(request.params(":id")));
       String inputtedBand = request.queryParams("inputtedBand");
-      Band newBand = new Band(inputtedBand);
+      // Band newBand = new Band(inputtedBand);
 
+
+      Band bandToConnect = Band.findByName(inputtedBand);
+        if (bandToConnect == null) {
+          bandToConnect = new Band(inputtedBand);
+          bandToConnect.save();
+        }
+        venue.addBand(bandToConnect);
 
       // boolean allreadyExists = false;
       // for (Band band : venue.getBands()) {

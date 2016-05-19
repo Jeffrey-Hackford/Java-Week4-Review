@@ -85,4 +85,12 @@ public class BandTest {
     newBand.updateBand("Band 3");
     assertEquals("Band 3", Band.find(newBand.getId()).getBandName());
   }
+
+  @Test
+  public void findByName_returnsBandNameFromDB() {
+    Band newBand = new Band("Band 10");
+    newBand.save();
+    Band foundBand = Band.findByName(newBand.getBandName());
+    assertTrue(newBand.equals(foundBand));
+  }
 }

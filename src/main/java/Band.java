@@ -109,4 +109,13 @@ public class Band {
         .executeUpdate();
     }
   }
+
+  public static Band findByName(String newBand) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM bands WHERE bandName = :bandName";
+      return con.createQuery(sql)
+        .addParameter("bandName", newBand)
+        .executeAndFetchFirst(Band.class);
+    }
+  }
 }
