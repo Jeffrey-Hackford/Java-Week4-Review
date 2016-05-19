@@ -6,6 +6,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.fluentlenium.core.filter.FilterConstructor.*;
 import org.junit.*;
+import static org.junit.Assert.*;
 
 public class AppTest extends FluentTest {
   public WebDriver webDriver = new HtmlUnitDriver();
@@ -82,5 +83,18 @@ public class AppTest extends FluentTest {
     submit(".btn", withText("Add Band"));
     submit(".btn", withText("Delete This Band"));
     assertThat(pageSource()).contains("Here is a list of all Bands:");
+  }
+
+  @Test
+  public void venueCanNotBeAddedToBandTwice() {
+    goTo("http://localhost:4567");
+    click("a", withText("Add A New Band"));
+    fill("#inputtedBand").with("Band 1");
+    submit(".btn", withText("Add Band"));
+    fill("#inputtedVenue").with("Venue 1");
+    submit(".btn", withText("Add Venue"));
+    fill("#inputtedVenue").with("Venue 1");
+    submit(".btn", withText("Add Venue"));
+    assertEquals(Venue.all().size(), 1);
   }
 }
