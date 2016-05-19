@@ -35,7 +35,7 @@ public class App{
       Band band = Band.find(Integer.parseInt(request.params(":id")));
       String venue = request.queryParams("inputtedVenue");
       model.put("band", band);
-      model.put("venues", Venue.all());
+      model.put("venues", band.getVenues());
       model.put("template", "templates/band.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
