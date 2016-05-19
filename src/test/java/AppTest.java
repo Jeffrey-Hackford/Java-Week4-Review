@@ -97,4 +97,17 @@ public class AppTest extends FluentTest {
     submit(".btn", withText("Add Venue"));
     assertEquals(Venue.all().size(), 1);
   }
+
+  @Test
+  public void bandCanNotBeAddedToVenueTwice() {
+    goTo("http://localhost:4567");
+    click("a", withText("Add A New Venue"));
+    fill("#inputtedVenue").with("Venue 1");
+    submit(".btn", withText("Add Venue"));
+    fill("#inputtedBand").with("Band 1");
+    submit(".btn", withText("Add Band"));
+    fill("#inputtedBand").with("Band 1");
+    submit(".btn", withText("Add Band"));
+    assertEquals(Band.all().size(), 1);
+  }
 }
