@@ -108,12 +108,5 @@ public class Band {
         .addParameter("id", this.id)
         .executeUpdate();
     }
-    // try(Connection con = DB.sql2o.open()) {
-    //   String sql = "UPDATE bands_venues SET bandName = :bandName WHERE band_id = :id";
-    //   con.createQuery(sql)
-    //     .addParameter("bandName", newBandName)
-    //     .addParameter("id", this.id)
-    //     .executeUpdate();
-    // }
   }
 }

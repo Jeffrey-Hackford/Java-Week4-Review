@@ -103,10 +103,13 @@ public class Venue {
         .executeUpdate();
     }
   }
-  //
-  // public void allreadyExists(Venue venue) {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql =
-  //   }
-  // }
+
+  public static Venue findByName(String newVenue) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM venues WHERE venueName = :venueName";
+      return con.createQuery(sql)
+        .addParameter("venueName", newVenue)
+        .executeAndFetchFirst(Venue.class);
+    }
+  }
 }

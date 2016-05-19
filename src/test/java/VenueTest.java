@@ -95,4 +95,12 @@ public class VenueTest {
     newVenue.update("Venue 9");
     assertEquals("Venue 9", Venue.find(newVenue.getId()).getVenueName());
   }
+
+  @Test
+  public void findByName_returnsVenueNameFromDB() {
+    Venue newVenue = new Venue("Venue 10");
+    newVenue.save();
+    Venue foundVenue = Venue.findByName(newVenue.getVenueName());
+    assertTrue(newVenue.equals(foundVenue));
+  }
 }

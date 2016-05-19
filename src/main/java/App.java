@@ -91,17 +91,19 @@ public class App{
       Venue venue = Venue.find(Integer.parseInt(request.params(":id")));
       String inputtedBand = request.queryParams("inputtedBand");
       Band newBand = new Band(inputtedBand);
-      boolean allreadyExists = false;
-      for (Band band : venue.getBands()) {
-        if (newBand.getBandName().equals(band.getBandName())) {
-          allreadyExists = true;
-          break;
-        }
-      }
-      if (allreadyExists == false) {
-        newBand.save();
-        venue.addBand(newBand);
-      }
+
+
+      // boolean allreadyExists = false;
+      // for (Band band : venue.getBands()) {
+      //   if (newBand.getBandName().equals(band.getBandName())) {
+      //     allreadyExists = true;
+      //     break;
+      //   }
+      // }
+      // if (allreadyExists == false) {
+      //   newBand.save();
+      //   venue.addBand(newBand);
+      // }
     response.redirect("/venues/" + venue.getId());
     return null;
     });
@@ -109,19 +111,27 @@ public class App{
     post("/bands/:id/venue/new", (request, response) -> {
       Band band = Band.find(Integer.parseInt(request.params(":id")));
       String venueName = request.queryParams("inputtedVenue");
-      Venue newVenue = new Venue(venueName);
-      boolean allreadyExists = false;
-        for (Venue venue : band.getVenues()) {
+      // Venue newVenue = new Venue(venueName);
 
-          if (newVenue.getVenueName().equals(venue.getVenueName())) {
-            allreadyExists = true;
-            break;
-          }
+      Venue venueToConnect = Venue.findByName(venueName);
+        if (venueToConnect == null) {
+          venueToConnect = new Venue(venueName);
+          venueToConnect.save();
         }
-        if (allreadyExists == false) {
-          newVenue.save();
-          band.addVenue(newVenue);
-        }
+        band.addVenue(venueToConnect);
+
+      // boolean allreadyExists = false;
+      //   for (Venue venue : band.getVenues()) {
+      //
+      //     if (newVenue.getVenueName().equals(venue.getVenueName())) {
+      //       allreadyExists = true;
+      //       break;
+      //     }
+      //   }
+      //   if (allreadyExists == false) {
+      //     newVenue.save();
+      //     band.addVenue(newVenue);
+      //   }
       response.redirect("/bands/" + band.getId());
       return null;
     });
