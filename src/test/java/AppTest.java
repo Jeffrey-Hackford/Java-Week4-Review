@@ -74,6 +74,13 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Band 1");
   }
 
-
-
+  @Test
+  public void bandIsDeletedFromDB() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Add A New Band"));
+    fill("#inputtedBand").with("Band 1");
+    submit(".btn", withText("Add Band"));
+    submit(".btn", withText("Delete This Band"));
+    assertThat(pageSource()).contains("Here is a list of all Bands:");
+  }
 }
