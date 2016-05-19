@@ -60,7 +60,6 @@ public class App{
       String inputtedBand = request.queryParams("inputtedBand");
       Band newBand = new Band(inputtedBand);
       newBand.save();
-// System.out.println(newBand);
       response.redirect("/bands/" + newBand.getId());
       return null;
     });
@@ -93,12 +92,10 @@ public class App{
     post("/venues/:id/band/new", (request, response) -> {
       Venue venue = Venue.find(Integer.parseInt(request.params(":id")));
       String inputtedBand = request.queryParams("inputtedBand");
-      // List<Band> allBands = Band.all();
       Band newBand = new Band(inputtedBand);
       boolean allreadyExists = false;
       for (Band band : venue.getBands()) {
         if (newBand.getBandName().equals(band.getBandName())) {
-System.out.println(newBand);
           allreadyExists = true;
           break;
         }
@@ -114,26 +111,15 @@ System.out.println(newBand);
     post("/bands/:id/venue/new", (request, response) -> {
       Band band = Band.find(Integer.parseInt(request.params(":id")));
       String venueName = request.queryParams("inputtedVenue");
-      // List<Venue> allVenues = Venue.all();
       Venue newVenue = new Venue(venueName);
       boolean allreadyExists = false;
         for (Venue venue : band.getVenues()) {
 
           if (newVenue.getVenueName().equals(venue.getVenueName())) {
-            // System.out.println(newVenue);
             allreadyExists = true;
-            // return null;
             break;
           }
         }
-            // newVenue.save();
-
-        // } else {
-        //     newVenue.save();
-        //     band.addVenue(newVenue);
-        //     break;
-        //   }
-        // }
         if (allreadyExists == false) {
           newVenue.save();
           band.addVenue(newVenue);
