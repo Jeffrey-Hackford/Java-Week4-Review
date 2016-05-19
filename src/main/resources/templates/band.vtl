@@ -18,7 +18,7 @@
 
       #if ($band.getVenues().size() !=0)
           <h2>$band.getBandName() is playing at these venues:</h2>
-        #foreach ($venue in $venues())
+        #foreach ($venue in $venues)
           <a href="/venues/$venue.getId()">$venue.getVenueName()</a><br>
         #end
 
