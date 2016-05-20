@@ -58,8 +58,7 @@ public class Venue {
   }
 
   public void addBand(Band passedInBand) {
-    if(this.getBands().contains(passedInBand));
-    else {
+    // if(this.getBands().contains(passedInBand)); else {
       try(Connection con = DB.sql2o.open()) {
         String sql = "INSERT INTO bands_venues (venue_id, band_id) VALUES (:venue_id, :band_id)";
         con.createQuery(sql)
