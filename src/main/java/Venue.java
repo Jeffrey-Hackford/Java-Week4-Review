@@ -57,13 +57,16 @@ public class Venue {
     }
   }
 
-  public void addBand(Band band) {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO bands_venues (venue_id, band_id) VALUES (:venue_id, :band_id)";
-      con.createQuery(sql)
-        .addParameter("venue_id", this.getId())
-        .addParameter("band_id", band.getId())
-        .executeUpdate();
+  public void addBand(Band passedInBand) {
+    if(this.getBands().contains(passedInBand));
+    else {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "INSERT INTO bands_venues (venue_id, band_id) VALUES (:venue_id, :band_id)";
+        con.createQuery(sql)
+          .addParameter("venue_id", this.getId())
+          .addParameter("band_id", passedInBand.getId())
+          .executeUpdate();
+      }
     }
   }
 

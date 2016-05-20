@@ -16,7 +16,7 @@ _This app will allow users to input Band names and assign them to a Venue, Updat
 * - then run the command "psql band_tracker < band_tracker.sql"
 * OR manually set up the database by running the following commands:
 * -- CREATE DATABASE band_tracker;
-* -- /c band_tracker;
+* -- \c band_tracker
 * -- CREATE TABLE bands (id serial PRIMARY KEY, bandname varchar);
 * -- CREATE TABLE venues (id serial PRIMARY KEY, venuename varchar);
 * -- CREATE TABLE bands_venues (id serial PRIMARY KEY, band_id int, venue_id int);
